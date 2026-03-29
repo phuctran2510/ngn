@@ -28,7 +28,7 @@ function Login({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (pwd === 'aiot2026') {
+    if (pwd === 'ngn2026') {
       localStorage.setItem('auth', 'true')
       onLogin(true)
     } else {
