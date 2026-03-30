@@ -110,7 +110,15 @@ function Login({ onLogin }) {
     </div>
   )
 }
-
+function useIsMobile() {
+  const [mob, setMob] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768)
+  useEffect(() => {
+    const h = () => setMob(window.innerWidth < 768)
+    window.addEventListener('resize', h)
+    return () => window.removeEventListener('resize', h)
+  }, [])
+  return mob
+}
 function Sidebar({ open, onClose }) {
   const loc  = useLocation()
   const mob  = useIsMobile()
@@ -201,6 +209,7 @@ const [isAuth, setIsAuth] = useState(false)
 
   const [open, setOpen] = useState(false)
   const close = useCallback(() => setOpen(false), [])
+
   if (!isAuth) {
   return <Login onLogin={setIsAuth} />
 }
